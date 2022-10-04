@@ -52,22 +52,46 @@ namespace CA221003
         public bool Predator 
 		{ 
 			get => _predator; 
-			private set => _predator = value; 
+			private set => _predator = value;
 		}
+
         public int SwimTop
 		{ 
 			get => _swimTop;
-			set => _swimTop = value;
+			set {
+				if (value < 0)
+					throw new Exception("A halak nem tudnak repülni - legalábbis ezek nem.");
+				if (value > 400)
+					throw new Exception("A hal legmagasabb mélysége nem lehet ennél nagyobb.");
+				_swimTop = value;
+			}
 		}
+
         public int SwimDepth
 		{ 
 			get => _swimDepth;
-			set => _swimDepth = value; 
+			set { 
+				if (value < 10)
+					throw new Exception("A halnak ennél nagyobb élettérre van szüksége.");
+				if (value > 400)
+					throw new Exception("A hal mozgási sávja nem lehet szélesebb 400cm-nél");
+				_swimDepth = value; 
+			}
 		}
+
         public string Species
 		{
 			get => _species; 
-			set => _species = value;
+			set { 
+				if (value is null)
+					throw new Exception("A hal fajtája nem lehet null.");
+				if (value.Length < 3)
+					throw new Exception("A hal neve nem lehet ilyen rövid.");
+				if (value.Length > 30)
+					throw new Exception("A hal neve nem lehet ilyen hosszú.");
+
+				_species = value;
+			}
 		}
     }
 }
