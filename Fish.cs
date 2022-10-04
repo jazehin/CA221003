@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CA221003
+﻿namespace CA221003
 {
     internal class Fish
     {
@@ -67,6 +61,14 @@ namespace CA221003
 			}
 		}
 
+		public int SwimBottom
+		{
+			get
+			{
+				return SwimTop + SwimDepth;
+			}
+		}
+
         public int SwimDepth
 		{ 
 			get => _swimDepth;
@@ -92,6 +94,20 @@ namespace CA221003
 
 				_species = value;
 			}
+		}
+
+		public new string ToString
+		{
+			get
+			{
+				return $"{Species}\t{(Species.Length < 8 ? "\t" : "")}{(Predator ? "ragadozó" : "növényevő")}\t{Weight,5:0.00} kg\t{SwimTop,3} cm - {SwimTop + SwimDepth,3} cm";
+			}
+		}
+
+		public bool CanSwimAt(float depth)
+		{
+			depth *= 100;
+			return (depth >= SwimTop && depth <= SwimBottom);
 		}
     }
 }
