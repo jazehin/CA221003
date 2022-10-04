@@ -19,6 +19,16 @@
 			Species = species;
 		}
 
+		public Fish (Fish fish)
+		{
+            Weight = fish.Weight;
+            _weightIsSet = true;
+            Predator = fish.Predator;
+            SwimTop = fish.SwimTop;
+            SwimDepth = fish.SwimDepth;
+            Species = fish.Species;
+        }
+
 		public float Weight
 		{
 			get { 
